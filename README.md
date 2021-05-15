@@ -14,7 +14,12 @@ Docker instace will run on http://127.0.0.1:8080/
 
 Testing with Postman:
 - URL: http://127.0.0.1:8080/
-- Raw Data packets:
+
+## Resutls
+Result will be returned as result->total
+Some additional debug info is also returned to verify calculations
+
+## Raw Data packets:
 
 {
   "expression": {
