@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use App\Repository\FactsRepository;
+use App\Repository\AnalyticsRepository;
 
 /**
  * Class IndexController
@@ -20,9 +20,9 @@ class IndexController extends AbstractController
 
 
 	/**
-	 * @var FactsRepository
+	 * @var AnalyticsRepository
 	 */
-	protected $FactsRepository;
+	protected $AnalyticsRepository;
 
 	/**
 	 * @param Request $rquest
@@ -35,59 +35,32 @@ class IndexController extends AbstractController
 			$data = json_decode($request->getContent(), true);
 			$request->request->replace(is_array($data) ? $data : array());
 
+			$res = $this->getAnalyticsRepository()->getAnalytics($data['expression']['fn'], $data['expression']['a'],  $data['expression']['b'], $data['security']);
 
+		} else {
 
-			/*
-				{
-				  "expression": {"fn": "*", "a": "sales", "b": 2},
-				  "security": "ABC"
-				}
-			 */
-
-
-			switch ($data['expression']['fn']) {
-				case '*':
-					// print_r(array($data['expression']['a'], $data['expression']['b']));
-
-					$res = $this->getFactsRepository()->getFacts($data['expression']['a'], $data['security']);
-					break;
-			}
-
-
-
-//
-//
-//			// $em = $this->getDoctrine()->getManager();
-//			// $em->getConnection()->connect();
-//			// $connected = $em->getConnection()->isConnected();
-//
-//
-//			$res = $this->getDoctrine()->getRepository(Securities::class)->findAll();
-//
-
-
-
-			$res = $this->get('serializer')->serialize($res, 'json');
-
-			$response = new Response($res);
-
-			$response->headers->set('Content-Type', 'application/json');
-			return $response;
-
+			$res = [
+				'error' => 'Malformed Request!!',
+			];
 		}
 
-
+		$res = $this->get('serializer')->serialize($res, 'json');
+		$response = new Response($res);
+		$response->headers->set('Content-Type', 'application/json');
+		return $response;
 	}
 
+	
 	/**
-	 * @return FactsRepository
+	 * @return AnalyticsRepository
 	 */
-	public function getFactsRepository(): FactsRepository
+	public function getAnalyticsRepository(): AnalyticsRepository
 	{
-		if ($this->FactsRepository === null) {
-			$this->FactsRepository = new FactsRepository($this->getDoctrine()->getConnection());
+		if ($this->AnalyticsRepository === null) {
+			$this->AnalyticsRepository = new AnalyticsRepository($this->getDoctrine()->getConnection());
 		}
-		return $this->FactsRepository;
+
+		return $this->AnalyticsRepository;
 	}
 
 
