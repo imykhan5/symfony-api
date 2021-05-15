@@ -2,7 +2,7 @@
 
 ## Docker
 - Run docker instance from the root of the project folder:
-sudo docker-compose up
+# sudo docker-compose up
 
 Docker instace will run on http://127.0.0.1:8080/
 
