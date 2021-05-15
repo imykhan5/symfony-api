@@ -50,7 +50,7 @@ class IndexController extends AbstractController
 			];
 		}
 
-		$res = $this->get('serializer')->serialize($res, 'json');
+		$res = $this->get('serializer')->serialize(['result' => $res], 'json');
 		$response = new Response($res);
 		$response->headers->set('Content-Type', 'application/json');
 		return $response;
