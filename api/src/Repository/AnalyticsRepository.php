@@ -69,7 +69,7 @@ class AnalyticsRepository
 	 * @param float $val_b
 	 * @return float
 	 */
-	public function calculate($operator, $val_a, $val_b): float
+	private function calculate($operator, $val_a, $val_b): float
 	{
 
 		$out = 0;
@@ -100,7 +100,7 @@ class AnalyticsRepository
 	 * @param string $security
 	 * @return float
 	 */
-	public function getData($attribute_name, $security): float
+	private function getData($attribute_name, $security): float
 	{
 
 		$con = $this->getConnection();
@@ -127,17 +127,9 @@ class AnalyticsRepository
 	/**
 	 * @return mixed
 	 */
-	public function getConnection()
+	private function getConnection()
 	{
 		return $this->connection;
-	}
-
-	/**
-	 * @param mixed $connection
-	 */
-	public function setConnection($connection)
-	{
-		$this->connection = $connection;
 	}
 
 
