@@ -35,7 +35,13 @@ class IndexController extends AbstractController
 			$data = json_decode($request->getContent(), true);
 			$request->request->replace(is_array($data) ? $data : array());
 
-			$res = $this->getAnalyticsRepository()->getAnalytics($data['expression']['fn'], $data['expression']['a'],  $data['expression']['b'], $data['security']);
+			if (isset($data['expression']['fn'])) {
+				$res = $this->getAnalyticsRepository()->getAnalytics($data['expression']['fn'], $data['expression']['a'],  $data['expression']['b'], $data['security']);
+			} else {
+				$res = [
+					'error' => 'Malformed Request!!',
+				];
+			}
 
 		} else {
 
@@ -50,7 +56,7 @@ class IndexController extends AbstractController
 		return $response;
 	}
 
-	
+
 	/**
 	 * @return AnalyticsRepository
 	 */
