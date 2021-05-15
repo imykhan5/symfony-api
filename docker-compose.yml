@@ -1,0 +1,13 @@
+version: "2.0"
+services:
+  website:
+    container_name: website
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    ports:
+      - "8080:80"
+    restart: always
+    volumes:
+      - ./:/var/www/html
+      - ./docker/apache:/etc/apache2/sites-enabled
