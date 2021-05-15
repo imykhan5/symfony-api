@@ -2,7 +2,7 @@
 
 ## Docker
 - Run docker instance from the root of the project folder:
--- sudo docker-compose up
+sudo docker-compose up
 
 Docker instace will run on http://127.0.0.1:8080/
 
@@ -30,7 +30,6 @@ Testing with Postman:
   "expression": {"fn": "*", "a": "sales", "b": 2},
   "security": "ABC"
 }
-
 
 {
   "expression": {"fn": "/", "a": "price", "b": "eps"},
