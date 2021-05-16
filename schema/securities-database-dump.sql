@@ -13,12 +13,10 @@
 
 
 -- Dumping database structure for securities
-DROP DATABASE IF EXISTS `securities`;
 CREATE DATABASE IF NOT EXISTS `securities` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
 USE `securities`;
 
 -- Dumping structure for table securities.attributes
-DROP TABLE IF EXISTS `attributes`;
 CREATE TABLE IF NOT EXISTS `attributes` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -43,14 +41,11 @@ INSERT INTO `attributes` (`id`, `name`) VALUES
 /*!40000 ALTER TABLE `attributes` ENABLE KEYS */;
 
 -- Dumping structure for table securities.facts
-DROP TABLE IF EXISTS `facts`;
 CREATE TABLE IF NOT EXISTS `facts` (
   `security_id` int(11) unsigned DEFAULT NULL,
   `attribute_id` int(11) unsigned DEFAULT NULL,
   `value` int(11) DEFAULT NULL,
-  KEY `security_id` (`security_id`),
-  KEY `attribute_id` (`attribute_id`),
-  KEY `value` (`value`)
+  UNIQUE KEY `security_id_attribute_id` (`security_id`,`attribute_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Dumping data for table securities.facts: ~100 rows (approximately)
@@ -160,7 +155,6 @@ INSERT INTO `facts` (`security_id`, `attribute_id`, `value`) VALUES
 /*!40000 ALTER TABLE `facts` ENABLE KEYS */;
 
 -- Dumping structure for table securities.securities
-DROP TABLE IF EXISTS `securities`;
 CREATE TABLE IF NOT EXISTS `securities` (
   `id` int(11) unsigned NOT NULL,
   `symbol` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
