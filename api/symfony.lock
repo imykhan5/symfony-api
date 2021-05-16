@@ -97,6 +97,9 @@
             "config/packages/fos_rest.yaml"
         ]
     },
+    "graham-campbell/result-type": {
+        "version": "v1.0.1"
+    },
     "jms/metadata": {
         "version": "2.5.0"
     },
@@ -146,6 +149,9 @@
     },
     "phpdocumentor/type-resolver": {
         "version": "1.4.0"
+    },
+    "phpoption/phpoption": {
+        "version": "1.7.5"
     },
     "phpspec/prophecy": {
         "version": "1.13.0"
@@ -441,6 +447,9 @@
     },
     "theseer/tokenizer": {
         "version": "1.2.0"
+    },
+    "vlucas/phpdotenv": {
+        "version": "v5.3.0"
     },
     "webmozart/assert": {
         "version": "1.10.0"

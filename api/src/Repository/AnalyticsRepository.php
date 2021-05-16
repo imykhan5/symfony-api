@@ -116,7 +116,7 @@ class AnalyticsRepository
 
 		$q = $con->prepare($sql);
 
-		$q->executeQuery(array('name' => $attribute_name, 'symbol' => $security));
+		$q->execute(array('name' => $attribute_name, 'symbol' => $security));
 
 		$row = $q->fetch(\PDO::FETCH_ASSOC);
 
