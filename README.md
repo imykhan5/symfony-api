@@ -15,17 +15,10 @@ Docker instace will run on http://127.0.0.1:8080/
 Testing with Postman:
 - URL: http://127.0.0.1:8080/
 
-## PHPUnit Tests
-
-Unit tests can be run like this from the root directory:
-cd api; ./vendor/bin/phpunit tests
-
-## Resutls
-Result will be returned as result->total
-Some additional debug info is also returned to verify calculations
-
 ## Raw Data packets:
 
+Use the Body -> RAW input in postman and enter these JSON objects:
+ 
 {
   "expression": {
     "fn": "-", 
@@ -46,4 +39,11 @@ Some additional debug info is also returned to verify calculations
   "security": "BCD"
 }
 
+## Resutls
+Result will be returned as result->total
+Some additional debug info is also returned to verify calculations
 
+## PHPUnit Tests
+
+Unit tests can be run like this from the root directory:
+cd api; ./vendor/bin/phpunit tests
